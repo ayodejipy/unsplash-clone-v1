@@ -2,12 +2,13 @@
 export default defineNuxtConfig({
     devtools: { enabled: true },
     modules: [
-        '@nuxt/eslint',
-        '@pinia/nuxt',
-        '@nuxt/ui',
-        '@nuxtjs/color-mode',
-        '@nuxtjs/tailwindcss',
-        'nuxt-icon',
+      '@nuxt/eslint',
+      '@pinia/nuxt',
+      '@nuxt/ui',
+      '@nuxtjs/color-mode',
+      '@nuxtjs/tailwindcss',
+      'nuxt-icon',
+      '@nuxt/icon',
     ],
     // eslint: {
     //   lintOnStart: false,

@@ -1,6 +1,9 @@
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <template>
-	<section class="w-full mt-28 flex justify-center"></section>
+    <section>
+        <!-- Loader -->
+        <!-- Images grid -->
+        <Home />
+    </section>
 </template>
