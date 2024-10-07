@@ -1,18 +1,22 @@
 <script setup lang="ts">
-const search = ref<boolean>('')
+const route = useRoute()
+
+const query = computed<string>(() => route.query.q as string)
+
 const photoStore = usePhotoStore()
-const { photos } = storeToRefs(photoStore)
-const { errors, loading, getRandomPhoto } = photoStore
+const { search } = storeToRefs(photoStore)
+const { errors, loading, searchPhoto } = photoStore
 
 onMounted(async () => {
-    await getRandomPhoto()
+    await searchPhoto(query)
 })
 </script>
 
 <template>
     <section>
         <AppHeader>
-            <SearchInput v-model="search" />
+            {{  loading ? `Searching for "${query}"` : `Search Result for "${query}"` }}
+			<!-- <SearchInput v-model="search" /> -->
         </AppHeader>
 		
         <div v-if="errors.length">Unable to load photos</div>

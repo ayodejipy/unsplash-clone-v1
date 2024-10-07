@@ -15,11 +15,11 @@
   "dependencies": {
     "@nuxt/icon": "^1.5.4",
     "@nuxt/ui": "latest",
-    "@pinia/nuxt": "^0.5.1",
-    "nuxt": "^3.11.2",
+    "@pinia/nuxt": "^0.5.5",
+    "nuxt": "^3.13.2",
     "pinia": "^2.1.7",
     "unsplash-js": "^7.0.19",
-    "vue": "^3.4.21",
+    "vue": "^3.5.11",
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
