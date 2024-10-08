@@ -7,17 +7,31 @@ interface IProps {
 
 const props = defineProps<IProps>()
 
-const fullname = computed(() => props.photo.user.first_name + " " + props.photo.user?.last_name)
+const fullname = computed(
+    () => props.photo.user.first_name + ' ' + props.photo.user?.last_name
+)
+
+const { setModal } = usePhotoModal()
+const { getPhotoById } = usePhotoStore()
+
+const toggleInfoModal = () => {
+    setModal('photo-info', props.photo.id)
+    getPhotoById(props.photo.id)
+}
 </script>
 
 <template>
-    <div class="card" :aria-label="props.photo.description">
+    <div
+        class="card"
+        :aria-label="props.photo.description"
+        @click="toggleInfoModal"
+    >
         <div class="card__photo">
-            <img :src="photo.urls.regular" alt="Description">
+            <img :src="photo.urls.regular" alt="Description" />
         </div>
         <div class="card__description">
-            <h3>{{fullname}}</h3>
-            <p>{{props.photo.user.location || "N/A"}}</p>
+            <h3>{{ fullname }}</h3>
+            <p>{{ props.photo.user.location || 'N/A' }}</p>
         </div>
     </div>
 </template>
@@ -31,6 +45,12 @@ const fullname = computed(() => props.photo.user.first_name + " " + props.photo.
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: clip;
+    cursor: pointer;
+    transition: transform 1.5ms ease-in;
+
+    /* :hover {
+        transform: scale(1.1);
+    } */
 
     .card__photo {
         background: #fff;
@@ -44,7 +64,7 @@ const fullname = computed(() => props.photo.user.first_name + " " + props.photo.
     }
 
     .card__description {
-		color: #fff;
+        color: #fff;
         padding: 16px;
         position: absolute;
         bottom: 0;

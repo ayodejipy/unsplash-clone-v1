@@ -13,7 +13,6 @@ export const usePhotoStore = defineStore('photos', () => {
         loading.value = true
         try {
             const result = await randomPhotos()
-            console.log({ result })
 
             if (result.type == 'error') {
                 errors.value = result.errors
@@ -39,7 +38,7 @@ export const usePhotoStore = defineStore('photos', () => {
             }
 
             if (result.type == 'success') {
-                search.value = result.response
+                search.value = result.response.results
             }
         } catch (error) {
             console.error('Error fetching photos:', error)
@@ -48,12 +47,21 @@ export const usePhotoStore = defineStore('photos', () => {
         }
     }
 
+    const getPhotoById = (id: string) => {
+        const found = photos.value.find((photo) => photo.id === id)
+        if (!found) return (photo.value = null)
+
+        return (photo.value = found)
+    }
+
     return {
         loading,
         errors,
         photos,
+        search,
         searchPhoto,
         photo,
         getRandomPhoto,
+        getPhotoById,
     }
 })

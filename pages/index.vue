@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const search = ref<boolean>('')
+const search = ref<string>('')
 const photoStore = usePhotoStore()
 const { photos } = storeToRefs(photoStore)
 const { errors, loading, getRandomPhoto } = photoStore
@@ -14,15 +14,16 @@ onMounted(async () => {
         <AppHeader>
             <SearchInput v-model="search" />
         </AppHeader>
-		
+
         <div v-if="errors.length">Unable to load photos</div>
-		
+
         <!-- Loader -->
-        <div v-if="loading">Loading...</div>
+        <div v-if="loading">
+            <loader />
+        </div>
 
         <section v-else>
             <PhotoGrid :photos />
         </section>
-
     </section>
 </template>
